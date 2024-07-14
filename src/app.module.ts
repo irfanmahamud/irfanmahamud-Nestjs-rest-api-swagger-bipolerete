@@ -4,6 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { join } from 'path';
+import { SabreFlightModule } from './sabre-flight/sabre-flight.module';
+import { CacheModule } from '@nestjs/cache-manager';
+import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -19,6 +23,12 @@ import { join } from 'path';
       logging: true,  // Enable logging
     }),
     UsersModule,
+    SabreFlightModule,
+    CacheModule.register({ isGlobal: true }),
+    HttpModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    })
   ],
   controllers: [AppController],
   providers: [AppService],

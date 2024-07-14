@@ -13,6 +13,10 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
 const path_1 = require("path");
+const sabre_flight_module_1 = require("./sabre-flight/sabre-flight.module");
+const cache_manager_1 = require("@nestjs/cache-manager");
+const axios_1 = require("@nestjs/axios");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -31,6 +35,12 @@ exports.AppModule = AppModule = __decorate([
                 logging: true,
             }),
             users_module_1.UsersModule,
+            sabre_flight_module_1.SabreFlightModule,
+            cache_manager_1.CacheModule.register({ isGlobal: true }),
+            axios_1.HttpModule,
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            })
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
